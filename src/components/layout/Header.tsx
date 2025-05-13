@@ -11,12 +11,10 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location]);
 
-  // Add shadow to header on scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -43,13 +41,11 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          {/* Logo */}
           <Link to="/" className="flex items-center">
             <span className="text-primary-500 text-3xl font-display font-bold">Pristine</span>
-            <span className="ml-2 text-neutral-700 text-lg font-medium">Cleaning</span>
+            <span className="ml-2 text-neutral-700 text-lg font-medium">Cleans</span>
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
               <NavLink
@@ -66,18 +62,16 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Phone number - desktop */}
           <div className="hidden md:flex items-center">
             <a 
-              href="tel:+16135551234" 
+              href="tel:+13437775235" 
               className="flex items-center px-4 py-2 bg-primary-500 text-white rounded-full transition-colors hover:bg-primary-600"
             >
               <Phone size={18} className="mr-2" />
-              <span className="font-medium">(613) 555-1234</span>
+              <span className="font-medium">+1 (343) 777-5235</span>
             </a>
           </div>
 
-          {/* Mobile menu button */}
           <button
             className="md:hidden text-neutral-700 p-2"
             onClick={toggleMenu}
@@ -88,7 +82,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {isMenuOpen && (
         <div className="md:hidden bg-white">
           <nav className="flex flex-col px-4 py-2">
@@ -106,11 +99,11 @@ const Header = () => {
               </NavLink>
             ))}
             <a 
-              href="tel:+16135551234" 
+              href="tel:+13437775235" 
               className="flex items-center justify-center py-3 mt-2 bg-primary-500 text-white rounded-lg"
             >
               <Phone size={18} className="mr-2" />
-              <span className="font-medium">(613) 555-1234</span>
+              <span className="font-medium">+1 (343) 777-5235</span>
             </a>
           </nav>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -11,21 +11,18 @@ const Footer = () => {
           <div>
             <div className="mb-4">
               <span className="text-primary-400 text-2xl font-display font-bold">Pristine</span>
-              <span className="ml-2 text-white text-lg font-medium">Cleaning</span>
+              <span className="ml-2 text-white text-lg font-medium">Cleans</span>
             </div>
             <p className="text-neutral-300 mb-4">
-              Professional cleaning services for residential and industrial clients in Ottawa. 
+              Professional cleaning services for residential and commercial clients in Ottawa. 
               We provide eco-friendly, reliable, and high-quality cleaning solutions.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-neutral-300 hover:text-primary-400 transition-colors" aria-label="Facebook">
+              <a href="https://facebook.com/pristinecleans" className="text-neutral-300 hover:text-primary-400 transition-colors" aria-label="Facebook">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-neutral-300 hover:text-primary-400 transition-colors" aria-label="Instagram">
+              <a href="https://instagram.com/pristinecleans" className="text-neutral-300 hover:text-primary-400 transition-colors" aria-label="Instagram">
                 <Instagram size={20} />
-              </a>
-              <a href="#" className="text-neutral-300 hover:text-primary-400 transition-colors" aria-label="Twitter">
-                <Twitter size={20} />
               </a>
             </div>
           </div>
@@ -95,18 +92,18 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin size={18} className="mr-2 mt-1 text-primary-400 flex-shrink-0" />
-                <span className="text-neutral-300">123 Cleaning Ave, Ottawa, ON K1S 5B6</span>
+                <span className="text-neutral-300">Ottawa, ON</span>
               </li>
               <li className="flex items-center">
                 <Phone size={18} className="mr-2 text-primary-400 flex-shrink-0" />
-                <a href="tel:+16135551234" className="text-neutral-300 hover:text-primary-400 transition-colors">
-                  (613) 555-1234
+                <a href="tel:+13437775235" className="text-neutral-300 hover:text-primary-400 transition-colors">
+                  +1 (343) 777-5235
                 </a>
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="mr-2 text-primary-400 flex-shrink-0" />
-                <a href="mailto:info@ottawapristine.com" className="text-neutral-300 hover:text-primary-400 transition-colors">
-                  info@ottawapristine.com
+                <a href="mailto:booking@pristinecleans.ca" className="text-neutral-300 hover:text-primary-400 transition-colors">
+                  booking@pristinecleans.ca
                 </a>
               </li>
               <li className="flex items-start">
@@ -119,7 +116,7 @@ const Footer = () => {
 
         <div className="mt-12 pt-6 border-t border-neutral-700 text-center">
           <p className="text-neutral-400 text-sm">
-            &copy; {new Date().getFullYear()} Ottawa Pristine Cleaning Services. All rights reserved.
+            &copy; {new Date().getFullYear()} PristineCleans.ca. All rights reserved.
           </p>
         </div>
       </div>
