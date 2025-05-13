@@ -5,33 +5,6 @@ import { ArrowRight, CheckCircle, UserCheck, Shield, Award } from 'lucide-react'
 import TestimonialSection from '../components/home/TestimonialSection';
 
 const About = () => {
-  const teamMembers = [
-    {
-      name: 'Sarah Miller',
-      position: 'Founder & CEO',
-      image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=300',
-      bio: 'With over 15 years in the cleaning industry, Sarah founded Ottawa Pristine Cleaning with a vision to provide exceptional service with eco-friendly methods.'
-    },
-    {
-      name: 'David Chen',
-      position: 'Operations Manager',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=300',
-      bio: 'David oversees daily operations, ensuring all cleaning teams maintain our high standards and clients receive consistent quality service.'
-    },
-    {
-      name: 'Emily Thompson',
-      position: 'Customer Relations',
-      image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=300',
-      bio: 'Emily works directly with clients to understand their needs and ensure our services exceed expectations. She&apos;s your go-to person for any questions or special requests.'
-    },
-    {
-      name: 'Michael Rodriguez',
-      position: 'Training Supervisor',
-      image: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=300',
-      bio: 'Michael develops our comprehensive training programs, ensuring all staff are experts in the latest cleaning techniques and safety protocols.'
-    }
-  ];
-  
   const values = [
     {
       icon: <CheckCircle size={28} className="text-primary-500" />,
@@ -61,9 +34,9 @@ const About = () => {
       <section className="bg-primary-500 py-16 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl font-display font-bold mb-6">About Ottawa Pristine Cleaning</h1>
+            <h1 className="text-3xl md:text-4xl font-display font-bold mb-6">About PristineCleans</h1>
             <p className="text-xl leading-relaxed mb-8">
-              We&apos;re Ottawa&apos;s trusted cleaning service, dedicated to transforming spaces with our 
+              We're Ottawa's trusted cleaning service, dedicated to transforming spaces with our 
               professional, reliable, and eco-friendly cleaning solutions since 2010.
             </p>
           </div>
@@ -82,7 +55,7 @@ const About = () => {
             >
               <h2 className="text-3xl font-display font-bold mb-6">Our Story</h2>
               <p className="text-lg text-neutral-700 mb-4">
-                Ottawa Pristine Cleaning was founded in 2010 with a simple mission: to provide 
+                PristineCleans was founded in 2010 with a simple mission: to provide 
                 exceptional cleaning services while respecting our environment and valuing our staff.
               </p>
               <p className="text-lg text-neutral-700 mb-4">
@@ -91,8 +64,8 @@ const About = () => {
                 has been built on our reputation for quality, reliability, and attention to detail.
               </p>
               <p className="text-lg text-neutral-700">
-                Today, we offer a wide range of cleaning services for residential, commercial, and 
-                industrial clients, but our core values remain the same: deliver excellence, respect 
+                Today, we offer a wide range of cleaning services for residential and commercial 
+                clients, but our core values remain the same: deliver excellence, respect 
                 our planet, and treat both our clients and staff with the highest regard.
               </p>
             </motion.div>
@@ -120,7 +93,7 @@ const About = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-display font-bold mb-4">Our Core Values</h2>
             <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
-              These principles guide everything we do at Ottawa Pristine Cleaning and 
+              These principles guide everything we do at PristineCleans and 
               help us deliver exceptional service to every client.
             </p>
           </div>
@@ -146,43 +119,6 @@ const About = () => {
         </div>
       </section>
       
-      {/* Our Team */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-display font-bold mb-4">Meet Our Team</h2>
-            <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
-              Our dedicated team of cleaning professionals is committed to 
-              delivering exceptional service to every client.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={index}
-                className="bg-white rounded-lg shadow-md overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                  <p className="text-primary-500 font-medium mb-3">{member.position}</p>
-                  <p className="text-neutral-600">{member.bio}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
       {/* Testimonials */}
       <TestimonialSection />
       
@@ -198,7 +134,7 @@ const About = () => {
           >
             <h3 className="text-2xl font-semibold mb-4">Ready to Experience the Pristine Difference?</h3>
             <p className="text-lg mb-6">
-              Book your cleaning service today and see why we&apos;re Ottawa&apos;s trusted cleaning provider.
+              Book your cleaning service today and see why we're Ottawa's trusted cleaning provider.
               Our team is ready to exceed your expectations.
             </p>
             <Link 
