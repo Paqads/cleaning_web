@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import ContactForm from '../components/contact/ContactForm';
 import LocationMap from '../components/contact/LocationMap';
 
@@ -10,28 +10,24 @@ const Contact = () => {
       icon: <Phone size={24} className="text-primary-500" />,
       title: 'Phone',
       details: [
-        { value: '(613) 555-1234', label: 'Main Office' },
-        { value: '(613) 555-5678', label: 'Customer Support' }
+        { value: '+1 (343) 777-5235', label: 'Main Line' }
       ],
-      action: { href: 'tel:+16135551234', label: 'Call us' }
+      action: { href: 'tel:+13437775235', label: 'Call us' }
     },
     {
       icon: <Mail size={24} className="text-primary-500" />,
       title: 'Email',
       details: [
-        { value: 'info@ottawapristine.com', label: 'General Inquiries' },
-        { value: 'booking@ottawapristine.com', label: 'Booking' }
+        { value: 'booking@pristinecleans.ca', label: 'Bookings & Inquiries' }
       ],
-      action: { href: 'mailto:info@ottawapristine.com', label: 'Email us' }
+      action: { href: 'mailto:booking@pristinecleans.ca', label: 'Email us' }
     },
     {
       icon: <MapPin size={24} className="text-primary-500" />,
-      title: 'Address',
+      title: 'Service Area',
       details: [
-        { value: '123 Cleaning Ave', label: null },
-        { value: 'Ottawa, ON K1S 5B6', label: null }
-      ],
-      action: { href: 'https://maps.google.com', label: 'Get directions', target: '_blank' }
+        { value: 'Ottawa, ON', label: null }
+      ]
     },
     {
       icon: <Clock size={24} className="text-primary-500" />,
@@ -50,8 +46,8 @@ const Contact = () => {
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl font-display font-bold mb-4">Contact Us</h1>
           <p className="text-lg text-neutral-600 max-w-3xl mx-auto">
-            Have questions about our cleaning services? Need a custom quote? 
-            Get in touch with our friendly team using the form below or through our contact information.
+            Have questions about our cleaning services? Need a quote? 
+            Get in touch with our friendly team and we'll help you keep your space pristine.
           </p>
         </div>
         

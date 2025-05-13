@@ -16,14 +16,32 @@ const ContactForm = () => {
   
   const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormData>();
   
-  const onSubmit = (data: ContactFormData) => {
-    console.log('Contact form submitted:', data);
-    // In a real app, this would send the data to a backend
-    setIsSubmitted(true);
-    setTimeout(() => {
-      reset();
-      setIsSubmitted(false);
-    }, 5000);
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...data,
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          from_name: data.name,
+          subject: `Contact Form: ${data.subject}`,
+          to: 'booking@pristinecleans.ca'
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          reset();
+          setIsSubmitted(false);
+        }, 5000);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   if (isSubmitted) {
@@ -38,7 +56,7 @@ const ContactForm = () => {
         </div>
         <h3 className="text-2xl font-semibold mb-4">Message Sent Successfully!</h3>
         <p className="text-lg">
-          Thank you for contacting Ottawa Pristine Cleaning. We've received your message and will get back to you shortly.
+          Thank you for contacting PristineCleans. We've received your message and will get back to you shortly.
         </p>
       </motion.div>
     );
@@ -49,7 +67,7 @@ const ContactForm = () => {
       <div className="bg-primary-500 p-6 text-white">
         <h2 className="text-2xl font-semibold">Contact Us</h2>
         <p className="text-white text-opacity-90">
-          We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.
+          Fill out the form below and we'll get back to you as soon as possible.
         </p>
       </div>
       
@@ -91,7 +109,7 @@ const ContactForm = () => {
               type="tel" 
               {...register('phone')}
               className="w-full p-3 border border-neutral-300 rounded-lg"
-              placeholder="(613) 555-1234"
+              placeholder="+1 (343) 777-5235"
             />
           </div>
           
@@ -105,7 +123,6 @@ const ContactForm = () => {
               <option value="quote">Request a Quote</option>
               <option value="booking">Booking Inquiry</option>
               <option value="feedback">Feedback</option>
-              <option value="complaint">Complaint</option>
               <option value="other">Other</option>
             </select>
             {errors.subject && <p className="text-error-500 mt-1">{errors.subject.message}</p>}

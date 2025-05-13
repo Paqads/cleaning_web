@@ -19,7 +19,7 @@ const LocationMap = () => {
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-4">Our Service Areas in Ottawa</h3>
         <p className="text-neutral-600 mb-4">
-          We provide cleaning services throughout the Ottawa region, including downtown and the following neighborhoods:
+          We provide professional cleaning services throughout the Ottawa region, including:
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           <div className="bg-neutral-50 px-3 py-2 rounded">Kanata</div>
@@ -32,9 +32,6 @@ const LocationMap = () => {
           <div className="bg-neutral-50 px-3 py-2 rounded">Centretown</div>
           <div className="bg-neutral-50 px-3 py-2 rounded">Sandy Hill</div>
         </div>
-        <p className="mt-4 text-neutral-600">
-          For areas outside of Ottawa, please contact us to check availability and possible additional travel fees.
-        </p>
       </div>
     </div>
   );
