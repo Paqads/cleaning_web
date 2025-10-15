@@ -3,9 +3,9 @@ import { createClient } from '@supabase/supabase-js';
 import { Calendar, Clock, User, Mail, Phone, MapPin, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { format } from 'date-fns';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 
 interface Booking {
   id: string;
@@ -39,6 +39,13 @@ const Admin: React.FC = () => {
 
   const fetchBookings = async () => {
     try {
+      if (!supabase) {
+        console.error('Supabase client not initialized');
+        setBookings([]);
+        setLoading(false);
+        return;
+      }
+
       const { data, error } = await supabase
         .from('bookings')
         .select('*')
@@ -61,6 +68,11 @@ const Admin: React.FC = () => {
 
   const updateBookingStatus = async (id: string, status: string) => {
     try {
+      if (!supabase) {
+        console.error('Supabase client not initialized');
+        return;
+      }
+
       const { error } = await supabase
         .from('bookings')
         .update({ status })

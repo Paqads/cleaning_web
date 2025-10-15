@@ -70,6 +70,12 @@ const BookingForm: React.FC<BookingFormProps> = ({ preselectedServiceId }) => {
   // Fetch blocked times for selected date
   useEffect(() => {
     const fetchBlockedTimes = async () => {
+      // Only fetch if environment variables are available
+      if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+        setBlockedTimes([]);
+        return;
+      }
+
       try {
         const response = await fetch(
           `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/blocked-times?date=${format(selectedDate, 'yyyy-MM-dd')}`,
@@ -79,13 +85,13 @@ const BookingForm: React.FC<BookingFormProps> = ({ preselectedServiceId }) => {
             },
           }
         );
-        
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const data = await response.json();
-        setBlockedTimes(data.blockedTimes);
+        setBlockedTimes(data.blockedTimes || []);
       } catch (error) {
         console.error('Error fetching blocked times:', error);
         // Set empty array to prevent UI from breaking
