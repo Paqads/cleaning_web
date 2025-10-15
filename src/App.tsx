@@ -6,6 +6,7 @@ import Booking from './pages/Booking';
 import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import Admin from './pages/Admin';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="pricing" element={<Pricing />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
+        <Route path="admin" element={<Admin />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
