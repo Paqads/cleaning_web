@@ -11,20 +11,21 @@ interface Booking {
   id: string;
   date: string;
   time: string;
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-  city: string;
-  postal_code: string;
-  service: string;
-  property_type: string;
-  property_size: string;
-  frequency: string;
-  status: string;
+  name?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  city?: string;
+  postal_code?: string;
+  service?: string;
+  property_type?: string;
+  property_size?: string;
+  frequency?: string;
+  status?: string;
   special_instructions?: string;
   estimated_price?: number;
   created_at: string;
+  user_id?: string;
 }
 
 const Admin: React.FC = () => {
@@ -44,10 +45,15 @@ const Admin: React.FC = () => {
         .order('date', { ascending: true })
         .order('time', { ascending: true });
 
-      if (error) throw error;
-      setBookings(data || []);
+      if (error) {
+        console.error('Error fetching bookings:', error);
+        setBookings([]);
+      } else {
+        setBookings(data || []);
+      }
     } catch (error) {
       console.error('Error fetching bookings:', error);
+      setBookings([]);
     } finally {
       setLoading(false);
     }
@@ -69,7 +75,7 @@ const Admin: React.FC = () => {
 
   const filteredBookings = bookings.filter(booking => {
     if (filter === 'all') return true;
-    return booking.status === filter;
+    return (booking.status || 'pending') === filter;
   });
 
   const getStatusColor = (status: string) => {
@@ -142,7 +148,7 @@ const Admin: React.FC = () => {
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
-                Pending ({bookings.filter(b => b.status === 'pending').length})
+                Pending ({bookings.filter(b => !b.status || b.status === 'pending').length})
               </button>
               <button
                 onClick={() => setFilter('confirmed')}
@@ -195,9 +201,9 @@ const Admin: React.FC = () => {
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <div className={`px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 ${getStatusColor(booking.status)}`}>
-                        {getStatusIcon(booking.status)}
-                        <span className="capitalize">{booking.status}</span>
+                      <div className={`px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 ${getStatusColor(booking.status || 'pending')}`}>
+                        {getStatusIcon(booking.status || 'pending')}
+                        <span className="capitalize">{booking.status || 'pending'}</span>
                       </div>
                       <span className="text-sm text-gray-500">
                         Booked {format(new Date(booking.created_at), 'MMM d, yyyy')}
@@ -222,54 +228,64 @@ const Admin: React.FC = () => {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-3">
-                        <User className="w-5 h-5 text-gray-400" />
-                        <div>
-                          <p className="text-sm text-gray-500">Customer</p>
-                          <p className="font-medium">{booking.name}</p>
+                      {booking.name && (
+                        <div className="flex items-center gap-3">
+                          <User className="w-5 h-5 text-gray-400" />
+                          <div>
+                            <p className="text-sm text-gray-500">Customer</p>
+                            <p className="font-medium">{booking.name}</p>
+                          </div>
                         </div>
-                      </div>
+                      )}
 
-                      <div className="flex items-center gap-3">
-                        <Mail className="w-5 h-5 text-gray-400" />
-                        <div>
-                          <p className="text-sm text-gray-500">Email</p>
-                          <a href={`mailto:${booking.email}`} className="font-medium text-primary-600 hover:text-primary-700">
-                            {booking.email}
-                          </a>
+                      {booking.email && (
+                        <div className="flex items-center gap-3">
+                          <Mail className="w-5 h-5 text-gray-400" />
+                          <div>
+                            <p className="text-sm text-gray-500">Email</p>
+                            <a href={`mailto:${booking.email}`} className="font-medium text-primary-600 hover:text-primary-700">
+                              {booking.email}
+                            </a>
+                          </div>
                         </div>
-                      </div>
+                      )}
 
-                      <div className="flex items-center gap-3">
-                        <Phone className="w-5 h-5 text-gray-400" />
-                        <div>
-                          <p className="text-sm text-gray-500">Phone</p>
-                          <a href={`tel:${booking.phone}`} className="font-medium text-primary-600 hover:text-primary-700">
-                            {booking.phone}
-                          </a>
+                      {booking.phone && (
+                        <div className="flex items-center gap-3">
+                          <Phone className="w-5 h-5 text-gray-400" />
+                          <div>
+                            <p className="text-sm text-gray-500">Phone</p>
+                            <a href={`tel:${booking.phone}`} className="font-medium text-primary-600 hover:text-primary-700">
+                              {booking.phone}
+                            </a>
+                          </div>
                         </div>
-                      </div>
+                      )}
 
-                      <div className="flex items-center gap-3">
-                        <MapPin className="w-5 h-5 text-gray-400" />
-                        <div>
-                          <p className="text-sm text-gray-500">Address</p>
-                          <p className="font-medium">
-                            {booking.address}, {booking.city} {booking.postal_code}
-                          </p>
+                      {booking.address && (
+                        <div className="flex items-center gap-3">
+                          <MapPin className="w-5 h-5 text-gray-400" />
+                          <div>
+                            <p className="text-sm text-gray-500">Address</p>
+                            <p className="font-medium">
+                              {booking.address}{booking.city && `, ${booking.city}`}{booking.postal_code && ` ${booking.postal_code}`}
+                            </p>
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
 
                     <div className="space-y-3">
-                      <div>
-                        <p className="text-sm text-gray-500 mb-1">Service Details</p>
-                        <div className="bg-gray-50 rounded-lg p-3 space-y-2">
-                          <p><span className="font-medium">Service:</span> {booking.service}</p>
-                          <p><span className="font-medium">Property:</span> {booking.property_type} ({booking.property_size})</p>
-                          <p><span className="font-medium">Frequency:</span> {booking.frequency}</p>
+                      {(booking.service || booking.property_type || booking.frequency) && (
+                        <div>
+                          <p className="text-sm text-gray-500 mb-1">Service Details</p>
+                          <div className="bg-gray-50 rounded-lg p-3 space-y-2">
+                            {booking.service && <p><span className="font-medium">Service:</span> {booking.service}</p>}
+                            {booking.property_type && <p><span className="font-medium">Property:</span> {booking.property_type}{booking.property_size && ` (${booking.property_size})`}</p>}
+                            {booking.frequency && <p><span className="font-medium">Frequency:</span> {booking.frequency}</p>}
+                          </div>
                         </div>
-                      </div>
+                      )}
 
                       {booking.special_instructions && (
                         <div>
@@ -283,7 +299,7 @@ const Admin: React.FC = () => {
                   </div>
 
                   <div className="mt-6 flex flex-wrap gap-2 pt-4 border-t">
-                    {booking.status === 'pending' && (
+                    {(!booking.status || booking.status === 'pending') && (
                       <>
                         <button
                           onClick={() => updateBookingStatus(booking.id, 'confirmed')}
