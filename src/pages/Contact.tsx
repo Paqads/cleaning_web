@@ -10,7 +10,7 @@ const Contact = () => {
       icon: <Phone size={24} className="text-primary-500" />,
       title: 'Phone',
       details: [
-        { value: '+1 (613)-799684 call to book', label: 'Main Line' }
+        { value: '+1 (613)-799-6684 call to book', label: 'Main Line' }
       ],
       action: { href: 'tel:+16137996684', label: 'Call us' }
     },

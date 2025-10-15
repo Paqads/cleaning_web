@@ -68,7 +68,7 @@ const Header = () => {
               className="flex items-center px-4 py-2 bg-primary-500 text-white rounded-full transition-colors hover:bg-primary-600"
             >
               <Phone size={18} className="mr-2" />
-              <span className="font-medium">+1 (613)-799684 call to book</span>
+              <span className="font-medium">+1 (613)-799-6684 call to book</span>
             </a>
           </div>
 
@@ -103,7 +103,7 @@ const Header = () => {
               className="flex items-center justify-center py-3 mt-2 bg-primary-500 text-white rounded-lg"
             >
               <Phone size={18} className="mr-2" />
-              <span className="font-medium">+1 (613)-799684 call to book</span>
+              <span className="font-medium">+1 (613)-799-6684 call to book</span>
             </a>
           </nav>
         </div>
