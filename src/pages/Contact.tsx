@@ -10,9 +10,9 @@ const Contact = () => {
       icon: <Phone size={24} className="text-primary-500" />,
       title: 'Phone',
       details: [
-        { value: '+1 (343) 777-5235', label: 'Main Line' }
+        { value: '613799684 call to book', label: 'Main Line' }
       ],
-      action: { href: 'tel:+13437775235', label: 'Call us' }
+      action: { href: 'tel:613799684', label: 'Call us' }
     },
     {
       icon: <Mail size={24} className="text-primary-500" />,
